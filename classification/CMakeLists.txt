@@ -3,7 +3,12 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-# Add source to this project's executable.
-add_executable (classification "classification.cpp" "classification.h")
 
-# TODO: Add tests and install targets if needed.
+set(TARGET classification)
+
+
+set(${TARGET}_INCLUDES ${OpenCV_INCLUDES} ${CMAKE_SOURCE_DIR})
+set(${TARGET}_LIBRARIES ${OpenCV_LIBRARIES})
+
+
+compile_to_exe(${TARGET} ${CMAKE_CURRENT_SOURCE_DIR})
