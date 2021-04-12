@@ -17,10 +17,19 @@ message(STATUS CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
 message(STATUS IsDebug=${IsDebug})
 
 
+function(print_all_variable)
+	# ��ӡ���пɼ������뻷������
+	get_cmake_property(_variableNames VARIABLES)
+	foreach (_variableName ${_variableNames})
+		message(STATUS "${_variableName}=${${_variableName}}")
+	endforeach()
+	execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "environment")
+endfunction(print_all_variable)
 
 
 
 macro(compile_to_exe TARGET_NAME SRC_PATH)
+
 	message(STATUS "--------------begin compile ${TARGET_NAME}----------------------")
 	file(GLOB_RECURSE ${TARGET_NAME}_SRC "${SRC_PATH}/*.cpp" "${SRC_PATH}/*.cc")
 	add_executable(${TARGET_NAME} ${${TARGET_NAME}_SRC})
@@ -40,7 +49,5 @@ macro(compile_to_exe TARGET_NAME SRC_PATH)
 
 	target_link_options(${TARGET_NAME} PRIVATE ${${TARGET_NAME}_L_OPTIONS})
 	message(STATUS ${TARGET_NAME}_L_OPTIONS=${${TARGET_NAME}_L_OPTIONS})
-	
 
-	
 endmacro(compile_to_exe)

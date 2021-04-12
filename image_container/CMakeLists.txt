@@ -12,3 +12,4 @@ set(${TARGET}_LIBRARIES ${OpenCV_LIBRARIES})
 
 
 compile_to_exe(${TARGET} ${CMAKE_CURRENT_SOURCE_DIR})
+

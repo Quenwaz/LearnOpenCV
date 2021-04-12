@@ -7,7 +7,10 @@ project ("LearningOpenCV")
 
 
 
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+set(CMAKE_BUILD_TYPE Debug)
+message(STATUS "CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 
 include(base)
 
@@ -19,5 +22,16 @@ else()
 	message(FATAL_ERROR "OpenCV library not found")
 endif()
 
+
+
 # Include sub-projects.
 add_subdirectory ("classification")
+add_subdirectory("image_container")
+
+
+
+set(CMAKE_CREATE_CONSOLE_EXE "")
+set(CMAKE_CREATE_WIN32_EXE  "")
+	
+
+PRINT_ALL_VARIABLE()
