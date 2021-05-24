@@ -28,6 +28,7 @@ set(CMAKE_CREATE_WIN32_EXE  "")
 add_subdirectory ("classification")
 add_subdirectory ("image_container")
 add_subdirectory ("images_stitching")
+add_subdirectory ("histogram")
 
 
 PRINT_ALL_VARIABLE()
