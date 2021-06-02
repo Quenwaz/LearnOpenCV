@@ -18,7 +18,7 @@ message(STATUS IsDebug=${IsDebug})
 
 
 function(print_all_variable)
-	# ��ӡ���пɼ������뻷������
+	# 打印所有环节遍历
 	get_cmake_property(_variableNames VARIABLES)
 	foreach (_variableName ${_variableNames})
 		message(STATUS "${_variableName}=${${_variableName}}")

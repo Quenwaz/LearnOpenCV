@@ -27,11 +27,8 @@ set(CMAKE_CREATE_WIN32_EXE  "")
 # Include sub-projects.
 add_subdirectory ("classification")
 add_subdirectory ("image_container")
-
-
-set(CMAKE_CREATE_CONSOLE_EXE "")
-set(CMAKE_CREATE_WIN32_EXE  "")
-	
+add_subdirectory ("images_stitching")
+add_subdirectory ("histogram")
 
 
 PRINT_ALL_VARIABLE()

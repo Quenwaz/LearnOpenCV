@@ -5,16 +5,16 @@ int main(int argc, char* argv[])
 {
 	try
 	{
-		printf("Hello world\n");
 		cv::Mat A, C;									// creates just the header parts
-		A = cv::imread("C:\\Users\\Quenwaz\\Pictures\\IMG\\3.jpg", cv::IMREAD_COLOR);	// here we'll know the method used (allocate matrix)
+														// here we'll know the method used (allocate matrix)
+		A = cv::imread("C:\\Users\\Quenwaz\\Pictures\\IMG\\3.jpg", cv::IMREAD_COLOR);
 		cv::Mat B(A);									// Use the copy constructor
-							
 		C = A;											// Assignment operator
+		cv::imshow("img", C);
+		cv::waitKey();
 	}
 	catch (const std::exception& e)
 	{
-		
 	}
 	getchar();
 	return EXIT_SUCCESS;
