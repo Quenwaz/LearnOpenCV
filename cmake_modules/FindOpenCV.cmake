@@ -3,6 +3,7 @@
 
 set(LIBNAME OpenCV)
 set(SDKDIR F:/DevEnvs/CppLibrary/opencvsdk)
+set(SDKDIR E:/DevEnvs/Cpp/opencvsdk)
 
 
 set(${LIBNAME}_INCLUDES ${SDKDIR}/include)

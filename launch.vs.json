@@ -1,0 +1,20 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "default",
+      "project": "CMakeLists.txt",
+      "projectTarget": "image_container.exe (image_container\\image_container.exe)",
+      "name": "image_container.exe (image_container\\image_container.exe)",
+      "args": [
+        "C:\\Users\\Quenwaz\\Pictures\\IMG\\3.jpg"
+      ],
+      "env": {
+        "DEBUG_LOGGING_LEVEL": "trace;info",
+        "ENABLE_TRACING": "true",
+        "PATH": "${env.PATH};E:/DevEnvs/Cpp/opencvsdk/x64/bind"
+      }
+    }
+  ]
+}
