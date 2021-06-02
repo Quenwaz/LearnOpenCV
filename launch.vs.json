@@ -5,8 +5,8 @@
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "image_container.exe (image_container\\image_container.exe)",
-      "name": "image_container.exe (image_container\\image_container.exe)",
+      "projectTarget": "erase_specify_color.exe (erase_specify_color\\erase_specify_color.exe)",
+      "name": "erase_specify_color.exe (erase_specify_color\\erase_specify_color.exe)",
       "args": [
         "C:\\Users\\Quenwaz\\Pictures\\IMG\\3.jpg"
       ],

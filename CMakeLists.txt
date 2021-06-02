@@ -29,6 +29,7 @@ add_subdirectory ("classification")
 add_subdirectory ("image_container")
 add_subdirectory ("images_stitching")
 add_subdirectory ("histogram")
+add_subdirectory ("erase_specify_color")
 
 
 PRINT_ALL_VARIABLE()
