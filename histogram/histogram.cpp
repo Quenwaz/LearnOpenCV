@@ -14,8 +14,9 @@ int main(int argc, char* argv[])
 		cv::waitKey();
 
 	}
-	catch (const std::exception& e)
+	catch (const std::exception&)
 	{
+		
 	}
 	getchar();
 	return EXIT_SUCCESS;

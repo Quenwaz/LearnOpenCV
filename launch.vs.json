@@ -13,7 +13,7 @@
       "env": {
         "DEBUG_LOGGING_LEVEL": "trace;info",
         "ENABLE_TRACING": "true",
-        "PATH": "${env.PATH};E:/DevEnvs/Cpp/opencvsdk/x64/bind"
+        "PATH": "${env.PATH};F:/DevEnvs/CppLibrary/opencvsdk/x64/bind"
       }
     }
   ]
