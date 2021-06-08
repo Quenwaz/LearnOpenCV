@@ -5,9 +5,12 @@
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "erase_specify_color.exe (erase_specify_color\\erase_specify_color.exe)",
-      "name": "erase_specify_color.exe (erase_specify_color\\erase_specify_color.exe)",
+      "projectTarget": "camera_to_video.exe (camera_to_video\\camera_to_video.exe)",
+      "name": "camera_to_video.exe (camera_to_video\\camera_to_video.exe)",
       "args": [
+        "0",
+        "R",
+        "N",
         "C:\\Users\\Quenwaz\\Pictures\\IMG\\3.jpg"
       ],
       "env": {
