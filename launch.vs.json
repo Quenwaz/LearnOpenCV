@@ -8,10 +8,9 @@
       "projectTarget": "camera_to_video.exe (camera_to_video\\camera_to_video.exe)",
       "name": "camera_to_video.exe (camera_to_video\\camera_to_video.exe)",
       "args": [
-        "0",
-        "R",
-        "N",
-        "C:\\Users\\Quenwaz\\Pictures\\IMG\\3.jpg"
+        "video",
+        "24",
+        "3"
       ],
       "env": {
         "DEBUG_LOGGING_LEVEL": "trace;info",
