@@ -3,57 +3,21 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
 #include <algorithm>
-#include <numeric>
 
 
-void lookup_rgb_channels(cv::Mat mat)
+
+
+int main(int argc, char const* argv[])
 {
-	cv::Mat dst_R = cv::Mat::zeros(mat.size(), CV_8UC3);
-	cv::Mat dst_G = cv::Mat::zeros(mat.size(), CV_8UC3);
-	cv::Mat dst_B = cv::Mat::zeros(mat.size(), CV_8UC3);
-	int ch[] = { 0, 0 };
-	cv::mixChannels(&mat, 1, &dst_B, 1, ch, 1);
-	cv::imshow("B", dst_B);
-	ch[0] = 1;
-	ch[1] = 1;
-	cv::mixChannels(&mat, 1, &dst_G, 1, ch, 1);
-	cv::imshow("G", dst_G);
-	ch[0] = 2;
-	ch[1] = 2;
-	cv::mixChannels(&mat, 1, &dst_R, 1, ch, 1);
-	cv::imshow("R", dst_R);
-	cv::waitKey();
-}
-
-
-void lookup_hsv_channels(cv::Mat mat)
-{
-	cv::cvtColor(mat, mat, cv::COLOR_BGR2HSV);
-	cv::Mat dst_R, dst_G, dst_B;
-	dst_R.create(mat.size(), CV_8U);
-	dst_G.create(mat.size(), CV_8U);
-	dst_B.create(mat.size(), CV_8U);
-	int ch[] = { 0, 0 };
-	cv::mixChannels(&mat, 1, &dst_B, 1, ch, 1);
-	cv::imshow("H", dst_B);
-	ch[0] = 1;
-	cv::mixChannels(&mat, 1, &dst_G, 1, ch, 1);
-	cv::imshow("S", dst_G);
-	ch[0] = 2;
-	cv::mixChannels(&mat, 1, &dst_R, 1, ch, 1);
-	cv::imshow("V", dst_R);
-	cv::waitKey();
-}
-
-
-
-int main(int argc, char* argv[])
-{
-	const char* img_path = R"(C:\Users\Quenwaz\Desktop\TCP_Stop.png)";
+	if (argc < 2)
+	{
+		fprintf(stderr, "Usage: %s [imgpath]", argv[0]);
+		return 1;
+	}
+	
+	const char* img_path = argv[1];
 	cv::Mat mat = cv::imread(img_path, cv::IMREAD_COLOR);
 
-	// lookup_rgb_channels(mat);
-	// lookup_hsv_channels(mat);
 
 	cv::Mat mid;
 	cv::cvtColor(mat, mid, cv::COLOR_BGR2HSV);

@@ -5,9 +5,10 @@
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "camera_to_video.exe (camera_to_video\\camera_to_video.exe)",
-      "name": "camera_to_video.exe (camera_to_video\\camera_to_video.exe)",
+      "projectTarget": "split_color.exe (split_color\\split_color.exe)",
+      "name": "split_color.exe (split_color\\split_color.exe)",
       "args": [
+        "C:\\Users\\Quenwaz\\Desktop\\2.jpg",
         "video",
         "24",
         "3"

@@ -31,6 +31,7 @@ add_subdirectory ("images_stitching")
 add_subdirectory ("histogram")
 add_subdirectory ("erase_specify_color")
 add_subdirectory ("camera_to_video")
+add_subdirectory ("split_color")
 
 
 PRINT_ALL_VARIABLE()
