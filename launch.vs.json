@@ -5,10 +5,10 @@
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "split_color.exe (split_color\\split_color.exe)",
-      "name": "split_color.exe (split_color\\split_color.exe)",
+      "projectTarget": "utils.exe (utils\\utils.exe)",
+      "name": "utils.exe (utils\\utils.exe)",
       "args": [
-        "C:\\Users\\Quenwaz\\Desktop\\2.jpg",
+        "C:\\Users\\Quenwaz\\Desktop\\IMG_6227.jpg",
         "video",
         "24",
         "3"
