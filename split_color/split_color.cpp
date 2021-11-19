@@ -45,6 +45,28 @@ void lookup_hsv_channels(cv::Mat mat)
 	cv::waitKey();
 }
 
+#define HSV_WHITE_MIN   (0, 0, 221)
+#define HSV_WHITE_MAX   (180,30,255)
+#define HSV_BLACK_MIN   (0, 0, 0)
+#define HSV_BLACK_MAX   (180, 255, 46)
+#define HSV_GRAY_MIN    (0, 0, 46)
+#define HSV_GRAY_MAX    (180,43,220)
+#define HSV_RED_MIN1    (0, 43, 46)
+#define HSV_RED_MIN2    (156, 43, 46)
+#define HSV_RED_MAX1    (10,255,255)
+#define HSV_RED_MAX2    (180,255,255)
+#define HSV_ORANGE_MIN  (11, 43, 46)
+#define HSV_ORANGE_MAX  (25, 255, 255)
+#define HSV_YELLOW_MIN  (26, 43, 46)
+#define HSV_YELLOW_MAX  (34, 255, 255)
+#define HSV_GREEN_MIN   (35, 43, 46)
+#define HSV_GREEN_MAX   (77, 255, 255)
+#define HSV_CYAN_MIN    (78, 43, 46)
+#define HSV_CYAN_MAX    (99, 255, 255)
+#define HSV_BLUE_MIN    (100, 43, 46)
+#define HSV_BLUE_MAX    (124, 255, 255)
+#define HSV_PURPLE_MIN  (125, 43, 46)
+#define HSV_PURPLE_MAX  (155, 255, 255)
 
 
 int main(int argc, char* argv[])
