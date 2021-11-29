@@ -33,6 +33,7 @@ add_subdirectory ("erase_specify_color")
 add_subdirectory ("camera_to_video")
 add_subdirectory ("split_color")
 add_subdirectory ("utils")
+add_subdirectory ("motion_correction")
 
 
 PRINT_ALL_VARIABLE()
