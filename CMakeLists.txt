@@ -11,6 +11,7 @@ set(CMAKE_BUILD_TYPE Debug)
 message(STATUS "CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 
 include(base)
+include(utils)
 
 find_package(OpenCV)
 
@@ -23,17 +24,13 @@ endif()
 set(CMAKE_CREATE_CONSOLE_EXE "")
 set(CMAKE_CREATE_WIN32_EXE  "")
 
-
 # Include sub-projects.
-add_subdirectory ("classification")
-add_subdirectory ("image_container")
-add_subdirectory ("images_stitching")
-add_subdirectory ("histogram")
-add_subdirectory ("erase_specify_color")
-add_subdirectory ("camera_to_video")
-add_subdirectory ("split_color")
-add_subdirectory ("utils")
-add_subdirectory ("motion_correction")
-add_subdirectory ("live_ocr")
+subdirlist(subdirs ${CMAKE_CURRENT_SOURCE_DIR}/example)
+foreach(subdir ${subdirs})
+	if (NOT subdir STREQUAL common)
+		add_subdirectory ("example/${subdir}")
+	endif()
+endforeach(subdir ${subdirs})
 
-PRINT_ALL_VARIABLE()
+
+# PRINT_ALL_VARIABLE()

@@ -15,9 +15,6 @@
 
 #include <iostream>
 
-using namespace std;
-using namespace cv;
-using namespace text;
 
 struct NumberOcr
 {
@@ -25,19 +22,19 @@ struct NumberOcr
     {
 
         // character recognition vocabulary
-        string voc = "0123456789";
+        std::string voc = "0123456789";
         // Emission probabilities for the HMM language model (identity matrix by default)
-        Mat emissionProbabilities = Mat::eye((int)voc.size(), (int)voc.size(), CV_64FC1);
+        cv::Mat emissionProbabilities = cv::Mat::eye((int)voc.size(), (int)voc.size(), CV_64FC1);
         // Bigram transition probabilities for the HMM language model
-        Mat transitionProbabilities;
+        cv::Mat transitionProbabilities;
 
         if (lex.size()>0)
         {
             // lexicon provided as a list of comma separated words.
             // Build tailored language model for the provided lexicon
-            vector<string> lexicon;
+            std::vector<std::string> lexicon;
             size_t pos = 0;
-            string delimiter = ",";
+            std::string delimiter = ",";
             std::string token;
             while ((pos = lex.find(delimiter)) != std::string::npos) {
                 token = lex.substr(0, pos);
@@ -45,22 +42,22 @@ struct NumberOcr
                 lex.erase(0, pos + delimiter.length());
             }
             lexicon.push_back(lex);
-            createOCRHMMTransitionsTable(voc,lexicon,transitionProbabilities);
+            cv::text::createOCRHMMTransitionsTable(voc,lexicon,transitionProbabilities);
         } else {
             // Or load the generic language model (from Aspell English dictionary)
-            FileStorage fs("F:/DevEnvs/CppLibrary/opencvsdk/etc/testdata/contrib/text/OCRHMM_transitions_table.xml", FileStorage::READ);
+            cv::FileStorage fs("F:/DevEnvs/CppLibrary/opencvsdk/etc/testdata/contrib/text/OCRHMM_transitions_table.xml", cv::FileStorage::READ);
             fs["transition_probabilities"] >> transitionProbabilities;
             fs.release();
         }
 
-        ocrTes_ = OCRTesseract::create(R"(D:\Program Files (x86)\Tesseract-OCR\tessdata)", "eng", "0123456789");
+        ocrTes_ = cv::text::OCRTesseract::create(R"(D:\Program Files (x86)\Tesseract-OCR\tessdata)", "eng", "0123456789");
 
-        ocrNM_  = OCRHMMDecoder::create(
-                                    loadOCRHMMClassifierNM("F:/DevEnvs/CppLibrary/opencvsdk/etc/testdata/contrib/text/OCRHMM_knn_model_data.xml.gz"),
+        ocrNM_  = cv::text::OCRHMMDecoder::create(
+                                    cv::text::loadOCRHMMClassifierNM("F:/DevEnvs/CppLibrary/opencvsdk/etc/testdata/contrib/text/OCRHMM_knn_model_data.xml.gz"),
                                     voc, transitionProbabilities, emissionProbabilities);
 
-        ocrCNN_ = OCRHMMDecoder::create(
-                                    loadOCRHMMClassifierCNN("F:/DevEnvs/CppLibrary/opencvsdk/etc/testdata/contrib/text/OCRBeamSearch_CNN_model_data.xml.gz"),
+        ocrCNN_ = cv::text::OCRHMMDecoder::create(
+                                    cv::text::loadOCRHMMClassifierCNN("F:/DevEnvs/CppLibrary/opencvsdk/etc/testdata/contrib/text/OCRBeamSearch_CNN_model_data.xml.gz"),
                                     voc, transitionProbabilities, emissionProbabilities);
     }
 
@@ -69,8 +66,8 @@ struct NumberOcr
         try{
             // be sure the frame is a binary image
             cv::Mat ocrframe;
-            cvtColor(frame, ocrframe, COLOR_BGR2GRAY);
-            threshold(ocrframe, ocrframe, 100., 255, THRESH_BINARY);
+            cvtColor(frame, ocrframe, cv::COLOR_BGR2GRAY);
+            threshold(ocrframe, ocrframe, 100., 255, cv::THRESH_BINARY);
 erode(ocrframe, ocrframe, getStructuringElement(cv::MORPH_CROSS, cv::Size(3, 3))); //腐蚀
             dilate(ocrframe, ocrframe, getStructuringElement(cv::MORPH_CROSS, cv::Size(3, 3))); //膨胀
             
@@ -78,11 +75,11 @@ erode(ocrframe, ocrframe, getStructuringElement(cv::MORPH_CROSS, cv::Size(3, 3))
 	        
             cv::imshow("binary", ocrframe);
             std::string output;
-            double t_r = (double)getTickCount();
-            std::vector<Rect> component_rect;
+            double t_r = (double)cv::getTickCount();
+            std::vector<cv::Rect> component_rect;
             std::vector<std::string> component_texts;
             std::vector<float> component_confidences;
-            ocrTes_->run(ocrframe, output,&component_rect, &component_texts, &component_confidences, OCR_LEVEL_WORD);
+            ocrTes_->run(ocrframe, output,&component_rect, &component_texts, &component_confidences, cv::text::OCR_LEVEL_WORD);
             output.erase(remove(output.begin(), output.end(), '\n'), output.end());
             for (size_t i = 0;i < component_texts.size(); ++i)
             {
@@ -103,8 +100,8 @@ erode(ocrframe, ocrframe, getStructuringElement(cv::MORPH_CROSS, cv::Size(3, 3))
             }
 
 
-            cout << " OCR_Tesseract  output \"" << output << "\". Done in "
-                << ((double)getTickCount() - t_r)*1000/getTickFrequency() << " ms." << endl;
+            std::cout << " OCR_Tesseract  output \"" << output << "\". Done in "
+                << ((double)cv::getTickCount() - t_r)*1000/cv::getTickFrequency() << " ms." << std::endl;
 
             // t_r = (double)getTickCount();
             // ocrNM_->run(ocrframe, output);
@@ -123,9 +120,9 @@ erode(ocrframe, ocrframe, getStructuringElement(cv::MORPH_CROSS, cv::Size(3, 3))
 
     }
 
-    Ptr<OCRTesseract>  ocrTes_;
-    Ptr<OCRHMMDecoder> ocrNM_;
-    Ptr<OCRHMMDecoder> ocrCNN_;
+    cv::Ptr<cv::text::OCRTesseract>  ocrTes_;
+    cv::Ptr<cv::text::OCRHMMDecoder> ocrNM_;
+    cv::Ptr<cv::text::OCRHMMDecoder> ocrCNN_;
 };
 
 

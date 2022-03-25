@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": [
-                "C:\\Users\\Quenwaz\\Desktop\\4.jpg"
+                "C:\\Users\\Quenwaz\\Desktop\\test.jpg"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
