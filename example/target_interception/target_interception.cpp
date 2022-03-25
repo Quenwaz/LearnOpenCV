@@ -5,7 +5,11 @@
 #include "opencv2/highgui.hpp"
 #include <opencv2/imgproc.hpp>
 
+/*
 
+图像增强：
+https://www.cnblogs.com/jukan/p/7815722.html
+*/
 
 
 int main(int argc, char* argv[])
