@@ -1,0 +1,37 @@
+#include <iostream> // for standard I/O
+#include <string>   // for strings
+#include <opencv2/core/core.hpp>        // Basic OpenCV structures (cv::Mat)
+#include <opencv2/highgui/highgui.hpp>  // Video write
+
+
+int main(int argc, char* argv[])
+{
+	try
+	{
+	
+	    cv::VideoCapture inputVideo(0);
+	    if (!inputVideo.isOpened())
+	    {
+	        std::cout << "Camera not found." << std::endl;
+	        return -1;
+	    }
+
+	    while (true)
+	    {
+	        cv::Mat frame;
+	        inputVideo >> frame;              // read
+	        if (frame.empty()) break;         // check if at end
+            cv::imshow("live", frame);
+            cv::waitKey(10);
+
+	    }
+
+	    std::cout << "Finished writing" << std::endl;
+	    return 0;
+	}
+	catch (cv::Exception& e)
+	{
+		std::cout << e.msg.c_str() << std::endl;
+	}
+
+}
