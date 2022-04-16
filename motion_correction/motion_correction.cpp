@@ -7,8 +7,8 @@ using namespace std;
 using namespace cv;
 using namespace cv::videostab;
  
-string inputPath = R"(J:\钙成像\原始数据\demo.avi)";
-string outputPath = R"(J:\钙成像\原始数据\demo-mc.avi)";
+string inputPath = R"(H:\钙成像\原始数据\实际记录数据\msCam1new.avi)";
+string outputPath = R"(H:\钙成像\原始数据\实际记录数据\msCam1new-mc.avi)";
  
 // 视频稳定输出
 void videoOutput(Ptr<IFrameSource> stabFrames, string outputPath)
