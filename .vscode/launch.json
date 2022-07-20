@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": [
-                "C:\\Users\\Quenwaz\\Desktop\\test.jpg"
+                "C:/Users/Quenwaz/Pictures/IMG/dora-cavallo-DvueTaCe8IQ-unsplash.jpg"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

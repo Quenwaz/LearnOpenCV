@@ -5,6 +5,44 @@
 #include <algorithm>
 
 
+cv::Mat extract_specify_color(cv::Mat org, const cv::Scalar& lower, const cv::Scalar& upper)
+{
+	cv::Mat mid;
+	cv::cvtColor(org, mid, cv::COLOR_BGR2HSV);
+	cv::Mat dst;
+	cv::inRange(mid, lower, upper, dst);
+
+	cv::Mat matResult=cv::Mat::zeros(org.rows, org.cols, org.type());
+	for (size_t i =0;i < matResult.rows; ++i)
+	{
+		// uchar* p = mat.ptr<uchar>(i);
+		for (size_t j = 0; j < matResult.cols; ++j)
+		{
+
+			if(dst.at<uchar>(i, j) > 0)
+			{
+				const size_t N = 3;
+				std::vector<uchar> vecR, vecG, vecB;
+				for (int x = j; x < (j + N) && x < matResult.cols; ++x)
+				{
+					vecB.push_back(org.at<cv::Vec3b>(i, x)[0]);
+					vecG.push_back(org.at<cv::Vec3b>(i, x)[1]);
+					vecR.push_back(org.at<cv::Vec3b>(i, x)[2]);
+				}
+
+				uchar r = *std::max_element(vecR.begin(), vecR.end());
+				uchar g = *std::max_element(vecG.begin(), vecG.end());
+				uchar b = *std::max_element(vecB.begin(), vecB.end()) ;
+
+				matResult.at<cv::Vec3b>(i, j) = { b, g, r };
+
+			}
+			// else matResult.at<cv::Vec3b>(i, j) = {0, 0, 0};
+		}
+	}
+	return matResult;
+}
+
 
 
 int main(int argc, char const* argv[])
@@ -17,56 +55,19 @@ int main(int argc, char const* argv[])
 	
 	const char* img_path = argv[1];
 	cv::Mat mat = cv::imread(img_path, cv::IMREAD_COLOR);
+	cv::namedWindow("org",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
+	cv::namedWindow("red",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
+	cv::namedWindow("green",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
+	cv::namedWindow("orange",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
 
-
-	cv::Mat mid;
-	cv::cvtColor(mat, mid, cv::COLOR_BGR2HSV);
-	cv::Mat dst;
-	cv::inRange(mid, cv::Scalar(10, 0, 200), cv::Scalar(100, 20, 250), dst);
-	
-	cv::imshow("gray", dst);
-	cv::imshow("before", mat);
-	cv::Mat matResult=mat.clone();
-	
-	uint rows = matResult.rows /** mat.channels()*/;
-	uint cols = matResult.cols;
-	// if (mat.isContinuous())
-	// {
-	// 	cols *= rows;
-	// 	rows = 1;
-	// }
-
-	for (size_t i =0;i < rows; ++i)
-	{
-		// uchar* p = mat.ptr<uchar>(i);
-		for (size_t j = 0; j < cols; ++j)
-		{
-
-			if(dst.at<uchar>(i, j) > 0)
-			{
-				const size_t N = 3;
-				std::vector<uchar> vecR, vecG, vecB;
-				for (int x = j - N; x < (j + N) && x < cols; ++x)
-				{
-					if (x < 0) continue;
-					vecB.push_back(matResult.at<cv::Vec3b>(i, x)[0]);
-					vecG.push_back(matResult.at<cv::Vec3b>(i, x)[1]);
-					vecR.push_back(matResult.at<cv::Vec3b>(i, x)[2]);
-				}
-
-				
-				uchar r = *std::max_element(vecR.begin(), vecR.end());
-				uchar g = *std::max_element(vecG.begin(), vecG.end());
-				uchar b = *std::max_element(vecB.begin(), vecB.end()) ;
-
-				matResult.at<cv::Vec3b>(i, j) = { b, g, r };
-
-			}
-		}
-	}
-
-	cv::imshow("after", matResult);
+	cv::imshow("org", mat);
+	cv::Mat red=extract_specify_color(mat, cv::Scalar(0, 43, 46), cv::Scalar(10, 255, 255));
+	cv::Mat green=extract_specify_color(mat, cv::Scalar(35, 43, 46), cv::Scalar(77, 255, 255));
+	cv::Mat orange=extract_specify_color(mat, cv::Scalar(11, 43, 46), cv::Scalar(25, 255, 255));
+	cv::imshow("red", red);
+	cv::imshow("green", green);
+	cv::imshow("orange", orange);
 	cv::waitKey();
-	cv::imwrite(img_path, matResult);
+	// cv::imwrite(img_path, matResult);
 	return 0;
 }
