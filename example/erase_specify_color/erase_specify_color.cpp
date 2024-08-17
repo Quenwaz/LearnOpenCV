@@ -12,7 +12,15 @@ cv::Mat extract_specify_color(cv::Mat org, const cv::Scalar& lower, const cv::Sc
 	cv::Mat dst;
 	cv::inRange(mid, lower, upper, dst);
 
-	cv::Mat matResult=cv::Mat::zeros(org.rows, org.cols, org.type());
+	cv::Mat dst_invert;
+	cv::bitwise_not(dst,dst_invert);
+	cv::imshow("gray", dst_invert);
+	
+	cv::Mat matResult;//=cv::Mat::zeros(org.rows, org.cols, org.type());
+
+	cv::bitwise_and(org,org,matResult,dst);
+	cv::bitwise_not(matResult,matResult);
+	return matResult;
 	for (size_t i =0;i < matResult.rows; ++i)
 	{
 		// uchar* p = mat.ptr<uchar>(i);
@@ -44,7 +52,6 @@ cv::Mat extract_specify_color(cv::Mat org, const cv::Scalar& lower, const cv::Sc
 }
 
 
-
 int main(int argc, char const* argv[])
 {
 	if (argc < 2)
@@ -57,16 +64,16 @@ int main(int argc, char const* argv[])
 	cv::Mat mat = cv::imread(img_path, cv::IMREAD_COLOR);
 	cv::namedWindow("org",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
 	cv::namedWindow("red",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
-	cv::namedWindow("green",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
-	cv::namedWindow("orange",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
+	// cv::namedWindow("green",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
+	// cv::namedWindow("orange",cv::WINDOW_NORMAL | cv::WINDOW_KEEPRATIO);
 
 	cv::imshow("org", mat);
-	cv::Mat red=extract_specify_color(mat, cv::Scalar(0, 43, 46), cv::Scalar(10, 255, 255));
-	cv::Mat green=extract_specify_color(mat, cv::Scalar(35, 43, 46), cv::Scalar(77, 255, 255));
-	cv::Mat orange=extract_specify_color(mat, cv::Scalar(11, 43, 46), cv::Scalar(25, 255, 255));
+	cv::Mat red=extract_specify_color(mat, cv::Scalar(0, 0, 46), cv::Scalar(180, 43, 220));
+	// cv::Mat green=extract_specify_color(mat, cv::Scalar(35, 43, 46), cv::Scalar(77, 255, 255));
+	// cv::Mat orange=extract_specify_color(mat, cv::Scalar(11, 43, 46), cv::Scalar(25, 255, 255));
 	cv::imshow("red", red);
-	cv::imshow("green", green);
-	cv::imshow("orange", orange);
+	// cv::imshow("green", green);
+	// cv::imshow("orange", orange);
 	cv::waitKey();
 	// cv::imwrite(img_path, matResult);
 	return 0;

@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": [
-                "C:/Users/Quenwaz/Pictures/IMG/dora-cavallo-DvueTaCe8IQ-unsplash.jpg"
+                "F:\\DevDocs\\资质附件\\1、安全生产许可证上传及审查（施工必备）\\4安全生产许可证2025.9.6.jpg"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,7 @@
                     "value": "$PATH;${command:cmake.getLaunchTargetDirectory};F:\\DevEnvs\\CppLibrary\\opencvsdk\\x64\\bind"
                 }
             ],
-            "console": "externalTerminal"
+            "console": "internalConsole"
             // "preLaunchTask": "build"
         }
     ]

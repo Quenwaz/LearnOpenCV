@@ -5,10 +5,10 @@
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "utils.exe (utils\\utils.exe)",
-      "name": "utils.exe (utils\\utils.exe)",
+      "projectTarget": "utils.exe (example\\user_interaction\\utils.exe)",
+      "name": "utils.exe (example\\user_interaction\\utils.exe)",
       "args": [
-        "C:\\Users\\Quenwaz\\Desktop\\IMG_6227.jpg",
+        "C:\\Users\\Quenwaz\\Desktop\\DJI_0006_R.JPG",
         "video",
         "24",
         "3"

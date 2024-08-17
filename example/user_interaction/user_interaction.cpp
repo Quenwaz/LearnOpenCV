@@ -59,8 +59,10 @@ int main(int argc, char const* argv[])
 	}
 
 	const char* img_path = argv[1];
-	cv::Mat mat = cv::imread(img_path, cv::IMREAD_GRAYSCALE);
-
+	cv::Mat mat = cv::imread(img_path, cv::IMREAD_UNCHANGED);// cv::IMREAD_GRAYSCALE);
+	// 获取通道数
+	int numChannels = mat.channels();
+	bool is8Bit = CV_8U ==  mat.depth();
 
 	cv::resize(mat, mat, cv::Size(0, 0), 0.3, 0.3);
 	cv::imshow("image", mat);
