@@ -2,16 +2,11 @@
 
 
 set(LIBNAME OpenCV)
-set(SDKDIR F:/DevEnvs/CppLibrary/opencvsdk)
-set(SDKDIR E:/DevEnvs/Cpp/opencvsdk)
+set(SDKDIR $ENV{CppDevEnvs}/opencvsdk)
 
 
 set(${LIBNAME}_INCLUDES ${SDKDIR}/include)
-if (${IsDebug})
-    set(${LIBNAME}_PATH ${SDKDIR}/${ARCHITECTURE}/libd)
-else(${IsDebug})
-    set(${LIBNAME}_PATH ${SDKDIR}/${ARCHITECTURE}/lib)
-endif(${IsDebug})
+set(${LIBNAME}_PATH ${SDKDIR}/${ARCHITECTURE}/lib)
 
 
 file(GLOB ${LIBNAME}_LIBRARIES ${${LIBNAME}_PATH}/*.lib)
