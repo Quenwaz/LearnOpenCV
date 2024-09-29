@@ -48,13 +48,17 @@ int main(int argc, char* argv[])
 	try
 	{
 		cv::Mat src = cv::imread(argv[1], cv::IMREAD_COLOR);
-		cvtColor(src, src, cv::COLOR_BGR2GRAY);
-		cv::Mat dst;
-		cv::equalizeHist(src, dst);
-		show_mat("Source image", src);
-		show_mat("Equalized Image", dst);
-		show_mat("Histogram1", generate_histogram(src));
-		show_mat("Histogram2", generate_histogram(dst));
+		show_mat("src",src);
+		 cv::Mat dst(src.rows/2, src.cols/2, CV_8UC3);
+		for (size_t i = 0; i < src.rows; i+=2)
+		{
+			for (size_t j = 0; j < src.cols; j+=2)
+			{
+				dst.at<cv::Vec3b>(i/2, j/2) = src.at<cv::Vec3b>(i, j);
+			}
+		}
+		cv::resize(dst, dst, cv::Size(src.cols,src.rows));
+		show_mat("dst",dst);
 		cv::waitKey(0);
 
 	}

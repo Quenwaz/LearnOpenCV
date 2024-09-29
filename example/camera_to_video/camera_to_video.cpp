@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 	    CV_FOURCC('F', 'L', 'V', '1') = FLV1 codec
 	     */
 		
-	    const int ex = static_cast<int>(inputVideo.get(CV_CAP_PROP_FOURCC)); // CV_FOURCC('H', '2', '6', '4');
+	    const int ex =  CV_FOURCC('D', 'I', 'V', 'X');//CV_FOURCC('H', '2', '6', '4'); // static_cast<int>(inputVideo.get(CV_CAP_PROP_FOURCC));
 
 		// 帧尺寸
 	    cv::Size S = cv::Size((int)inputVideo.get(CV_CAP_PROP_FRAME_WIDTH),

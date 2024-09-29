@@ -10,11 +10,7 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
-            "args": [
-                "C:/Users/zhangkh/Desktop/test.mp4",
-                "24",
-                "3"
-            ],
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [
